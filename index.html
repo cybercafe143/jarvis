@@ -1074,74 +1074,229 @@ send = async function(){
 document.getElementById("sendBtn").onclick = () => send();
 
 /* ---------------- WAKE WORD — "JARVIS" ---------------- */
+/* ---------------- WAKE WORD — "JARVIS" ---------------- */
 let wakeOn = localStorage.getItem("jarvis_wake") === "on";
-let wakeRec = null, wakeActive = false, awaitingCmd = false, awaitTimer = null;
+let wakeRec = null;
+let wakeActive = false;
+let awaitingCmd = false;
+let awaitTimer = null;
+let wakeRestartTimer = null;
+let wakeBootstrapped = false;
+
 const wakeBtn = document.createElement("button");
 wakeBtn.className = "gear";
 wakeBtn.style.marginLeft = "8px";
 document.querySelector(".sysinfo").appendChild(wakeBtn);
+
 function paintWake(){
   wakeBtn.textContent = wakeOn ? "◉ WAKE ON" : "○ WAKE OFF";
   wakeBtn.style.color = wakeOn ? "#7df2ff" : "";
   wakeBtn.style.borderColor = wakeOn ? "var(--cyan)" : "";
   wakeBtn.style.boxShadow = wakeOn ? "0 0 14px #00d4ff33" : "";
 }
-function startWake(){
-  if(!SR || !wakeOn || wakeActive || recording) return;
-  wakeRec = new SR();
-  wakeRec.continuous = false; wakeRec.interimResults = false; wakeRec.lang = "en-US";
-  wakeRec.onresult = e => {
-    const said = e.results[e.results.length - 1][0].transcript.trim();
+
+function clearWakeRestart(){
+  if(wakeRestartTimer){
+    clearTimeout(wakeRestartTimer);
+    wakeRestartTimer = null;
+  }
+}
+
+function scheduleWakeRestart(delay = 500){
+  clearWakeRestart();
+  if(!wakeOn || recording || speechSynthesis.speaking) return;
+  wakeRestartTimer = setTimeout(() => {
+    startWake();
+  }, delay);
+}
+
+function makeWakeRecognizer(){
+  if(!SR) return null;
+
+  const r = new SR();
+  r.lang = "en-US";
+  r.interimResults = false;
+  r.continuous = true;
+  r.maxAlternatives = 1;
+
+  r.onstart = () => {
+    wakeActive = true;
+  };
+
+  r.onresult = async (e) => {
+    const last = e.results[e.results.length - 1];
+    if(!last || !last[0]) return;
+
+    const saidRaw = last[0].transcript.trim();
+    const said = saidRaw.toLowerCase();
+
     if(!said) return;
+
     if(awaitingCmd){
-      clearTimeout(awaitTimer); awaitingCmd = false; setState("idle");
-      document.getElementById("userInput").value = said;
-      send();
+      clearTimeout(awaitTimer);
+      awaitingCmd = false;
+      pauseWake();
+      const reply = await handleCommand(saidRaw);
+      if(reply) speak(reply);
       return;
     }
-    const low = said.toLowerCase();
-    const idx = low.indexOf("jarvis");
-    if(idx === -1) return;
-    const after = said.slice(idx + 6).replace(/^[,!. ]+/, "").trim();
-    if(after){
-      document.getElementById("userInput").value = after;
-      send();
+
+    const heardWake =
+      /\bjarvis\b/i.test(saidRaw) ||
+      /\bhey jarvis\b/i.test(saidRaw) ||
+      /\bokay jarvis\b/i.test(saidRaw) ||
+      /\bok jarvis\b/i.test(saidRaw);
+
+    if(!heardWake) return;
+
+    const bare = stripWake(saidRaw);
+
+    if(bare){
+      pauseWake();
+      const reply = await handleCommand(saidRaw);
+      if(reply) speak(reply);
     } else {
       awaitingCmd = true;
       coreState.textContent = "LISTENING";
       core.className = "thinking";
       speak("Yes, sir?");
-      awaitTimer = setTimeout(() => { awaitingCmd = false; setState("idle"); }, 9000);
+      awaitTimer = setTimeout(() => {
+        awaitingCmd = false;
+      }, 7000);
     }
   };
-  wakeRec.onerror = () => {};
- wakeRec.onerror = e => { if(e.error === "no-speech" || e.error === "aborted") return; };
-wakeRec.onend = () => { wakeActive = false; if(wakeOn && !recording) setTimeout(startWake, 300); };
-  try{ wakeRec.start(); wakeActive = true; }catch(e){}
+
+  r.onerror = (e) => {
+    wakeActive = false;
+
+    if(!e) return;
+    if(e.error === "no-speech" || e.error === "aborted") return;
+
+    if(e.error === "not-allowed" || e.error === "service-not-allowed"){
+      wakeOn = false;
+      localStorage.setItem("jarvis_wake", "off");
+      paintWake();
+      addMsg("sys", "MICROPHONE PERMISSION BLOCKED — ALLOW MIC ACCESS AND ARM WAKE AGAIN");
+      return;
+    }
+
+    scheduleWakeRestart(1200);
+  };
+
+  r.onend = () => {
+    wakeActive = false;
+    if(wakeOn && !recording && !speechSynthesis.speaking){
+      scheduleWakeRestart(600);
+    }
+  };
+
+  return r;
 }
+
+function startWake(){
+  if(!SR || !wakeOn || recording || speechSynthesis.speaking) return;
+  if(wakeActive) return;
+
+  clearWakeRestart();
+
+  try{
+    if(!wakeRec){
+      wakeRec = makeWakeRecognizer();
+    }
+    if(!wakeRec) return;
+    wakeRec.start();
+  }catch(e){
+    scheduleWakeRestart(1000);
+  }
+}
+
 function stopWake(){
-  if(wakeRec){ try{ wakeRec.onend = null; wakeRec.stop(); }catch(e){} wakeRec = null; }
+  clearWakeRestart();
+  awaitingCmd = false;
+  clearTimeout(awaitTimer);
+
+  if(wakeRec){
+    try{ wakeRec.stop(); }catch(e){}
+  }
   wakeActive = false;
 }
-function pauseWake(){ if(wakeOn) stopWake(); }
-function resumeWake(){ if(wakeOn && !recording) setTimeout(startWake, 300); }
-wakeBtn.onclick = () => {
-  if(!SR){ addMsg("sys", "VOICE RECOGNITION NOT SUPPORTED IN THIS BROWSER — USE CHROME"); return; }
+
+function pauseWake(){
+  if(wakeOn) stopWake();
+}
+
+function resumeWake(){
+  if(wakeOn && !recording && !speechSynthesis.speaking){
+    scheduleWakeRestart(500);
+  }
+}
+
+wakeBtn.onclick = async () => {
+  if(!SR){
+    addMsg("sys", "VOICE RECOGNITION NOT SUPPORTED IN THIS BROWSER — USE CHROME");
+    return;
+  }
+
+  if(!wakeBootstrapped){
+    wakeBootstrapped = true;
+    try{
+      const testRec = new SR();
+      testRec.start();
+      setTimeout(() => {
+        try{ testRec.stop(); }catch(e){}
+      }, 150);
+    }catch(e){}
+  }
+
   wakeOn = !wakeOn;
   localStorage.setItem("jarvis_wake", wakeOn ? "on" : "off");
   paintWake();
-  if(wakeOn){ startWake(); addMsg("sys", '◉ WAKE WORD ARMED — JUST SAY "JARVIS"'); speak("Wake word armed. Just say Jarvis, sir."); }
-  else { stopWake(); addMsg("sys", "○ WAKE WORD DISARMED"); }
+
+  if(wakeOn){
+    startWake();
+    addMsg("sys", '◉ WAKE WORD ARMED — JUST SAY "JARVIS"');
+    speak("Wake word armed. Just say Jarvis, sir.");
+  } else {
+    stopWake();
+    addMsg("sys", "○ WAKE WORD DISARMED");
+  }
 };
+
 paintWake();
-if(wakeOn) setTimeout(startWake, 3000);
+if(wakeOn){
+  setTimeout(() => {
+    if(!speechSynthesis.speaking && !recording) startWake();
+  }, 1200);
+}
+
 /* manual mic pauses wake listening */
 if(rec){
   const oldEnd = rec.onend;
-  rec.onend = () => { if(oldEnd) oldEnd(); resumeWake(); };
+  rec.onend = () => {
+    if(oldEnd) oldEnd();
+    resumeWake();
+  };
 }
-micBtn.onclick = () => { pauseWake(); startMic(); };
-core.onclick = () => { pauseWake(); startMic(); };
+micBtn.onclick = () => {
+  pauseWake();
+  startMic();
+};
+core.onclick = () => {
+  pauseWake();
+  startMic();
+};
+
+document.addEventListener("visibilitychange", () => {
+  if(document.hidden){
+    stopWake();
+  } else if(wakeOn){
+    scheduleWakeRestart(800);
+  }
+});
+
+window.addEventListener("focus", () => {
+  if(wakeOn) scheduleWakeRestart(600);
+});
 
 /* ---------------- COMMANDS CHEAT-SHEET CHIP ---------------- */
 (function(){
