@@ -21,7 +21,6 @@
     font-family:"Rajdhani","Segoe UI",system-ui,sans-serif;
     display:flex; flex-direction:column;
   }
-  /* ---------- cinematic background ---------- */
   #bgfx{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden}
   #bgfx .aurora{
     position:absolute;inset:-30%;
@@ -52,7 +51,6 @@
       radial-gradient(120% 100% at 50% 50%, transparent 62%, #00040a99 100%),
       repeating-linear-gradient(0deg, transparent 0 3px, #0000000c 3px 5px);
   }
-  /* ---------- boot ---------- */
   #boot{
     position:fixed;inset:0;background:#010307;z-index:200;
     display:flex;flex-direction:column;align-items:center;justify-content:center;gap:30px;
@@ -76,7 +74,6 @@
   #bootBar i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--cyan),var(--cyan-bright));box-shadow:0 0 16px var(--cyan);transition:width .35s}
   @keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
   @keyframes spin{to{transform:rotate(360deg)}}
-  /* ---------- header ---------- */
   header{
     z-index:5;display:flex;align-items:center;gap:16px;
     padding:0 22px;height:52px;flex-shrink:0;position:relative;
@@ -98,7 +95,6 @@
   .gear:hover{background:#00d4ff1c;box-shadow:0 0 18px var(--cyan-faint);border-color:var(--cyan)}
 </style>
 <style>
-  /* ---------- layout ---------- */
   main{flex:1;display:flex;z-index:2;min-height:0}
   .panel-title{
     font-family:var(--mono);font-size:9px;letter-spacing:4px;color:var(--muted);
@@ -106,7 +102,6 @@
   }
   .panel-title::before{content:"";width:3px;height:11px;background:var(--cyan);box-shadow:0 0 8px var(--cyan)}
   .panel-title::after{content:"";flex:1;height:1px;background:linear-gradient(90deg,#0e2a3d,transparent)}
-  /* ---------- left panel ---------- */
   #leftPanel{
     width:280px;flex-shrink:0;display:flex;flex-direction:column;
     background:linear-gradient(180deg,var(--panel),var(--panel2));
@@ -124,7 +119,6 @@
     clip-path:polygon(6px 0,100% 0,100% calc(100% - 6px),calc(100% - 6px) 100%,0 100%,0 6px);
   }
   .chip:hover{border-color:var(--cyan);color:var(--cyan-bright);background:#00d4ff12;box-shadow:0 0 16px #00d4ff1a;transform:translateY(-1px)}
-  /* tasks */
   #taskRow{display:flex;gap:7px;margin-bottom:12px}
   #taskInput{
     flex:1;background:#02101a;border:1px solid #0e3348;color:var(--text);
@@ -150,10 +144,9 @@
   .tcheck:hover{border-color:var(--cyan);box-shadow:0 0 8px #00d4ff33}
   .tdel{cursor:pointer;color:#2d566b;font-size:13px;background:none;border:none;padding:0 2px;transition:.2s}
   .tdel:hover{color:var(--red)}
-  #taskEmpty{font-family:var(--mono);font-size:10px;color:#28516600;letter-spacing:2px;color:#285166}
+  #taskEmpty{font-family:var(--mono);font-size:10px;color:#285166;letter-spacing:2px}
   #taskStats{font-family:var(--mono);font-size:9px;letter-spacing:2px;color:var(--dim);margin-top:12px}
   #taskStats b{color:var(--gold);font-weight:400}
-  /* ---------- core ---------- */
   #coreWrap{flex:1.15;display:flex;align-items:center;justify-content:center;position:relative;min-width:0}
   #particles{position:absolute;inset:0;pointer-events:none}
   .hud{position:absolute;width:30px;height:30px;border-color:#1a4a63;border-style:solid;border-width:0}
@@ -191,7 +184,6 @@
   .t1{inset:8%}.t2{inset:21%}.t3{inset:33%}
 </style>
 <style>
-  /* ---------- orb ---------- */
   #orb{
     position:absolute;inset:37%;border-radius:50%;
     background:
@@ -231,7 +223,6 @@
     text-shadow:0 0 12px #00d4ff33;padding:0 20px;min-height:16px;
   }
   #coreQuote::after{content:"▏";color:var(--cyan);animation:pulse 1s infinite}
-  /* ---------- chat ---------- */
   #chatPanel{
     flex:1;max-width:560px;display:flex;flex-direction:column;min-height:0;
     background:linear-gradient(180deg,var(--panel),var(--panel2));
@@ -296,7 +287,6 @@
   }
   .btn:hover{background:#00d4ff20;box-shadow:0 0 18px #00d4ff22;border-color:var(--cyan)}
   .btn.rec{border-color:var(--red);color:var(--red);background:#ff4d6d14;animation:pulse 1s infinite}
-  /* ---------- modal ---------- */
   #modal{position:fixed;inset:0;background:#000c;z-index:100;display:none;align-items:center;justify-content:center;backdrop-filter:blur(5px)}
   #modal.open{display:flex}
   #modalBox{
@@ -597,21 +587,29 @@ function speak(text){
   speechSynthesis.speak(u);
 }
 
-/* ================= voice in ================= */
+/* ================= voice in — FIXED WITH AUTO-RESTART ================= */
 const micBtn = $("micBtn");
 const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
 let rec = null, recording = false;
 if(SR){
   rec = new SR();
-  rec.lang = "en-US"; rec.interimResults = false;
+  rec.lang = "en-US"; rec.interimResults = false; rec.continuous = false;
   rec.onresult = e => { $("userInput").value = e.results[0][0].transcript; send(); };
   rec.onend = ()=>{ recording = false; micBtn.classList.remove("rec"); };
+  rec.onerror = e => { recording = false; micBtn.classList.remove("rec"); console.warn("mic err", e.error); };
 } else { micBtn.style.opacity = .3; micBtn.title = "Voice input not supported in this browser"; }
+
 function startMic(){
   if(!rec) return;
   if(recording){ rec.stop(); return; }
   speechSynthesis.cancel();
-  recording = true; micBtn.classList.add("rec"); rec.start();
+  recording = true; micBtn.classList.add("rec");
+  try{ rec.start(); }
+  catch(e){
+    /* If already started, abort and restart */
+    try{ rec.abort(); }catch(e2){}
+    setTimeout(()=>{ try{ rec.start(); }catch(e3){ recording=false; micBtn.classList.remove("rec"); } }, 300);
+  }
 }
 micBtn.onclick = startMic;
 core.onclick = startMic;
@@ -821,7 +819,6 @@ function remember(fact){
   if(memory.length > 40) memory = memory.slice(-40);
   saveMem();
 }
-/* memory widget in left panel */
 (function(){
   const lp = document.getElementById("leftPanel"); if(!lp) return;
   const w = document.createElement("div");
@@ -851,7 +848,7 @@ function renderMemory(){
 }
 renderMemory();
 
-/* ---------------- MEMORY-AWARE BRAIN (overrides askGroq) ---------------- */
+/* ---------------- MEMORY-AWARE BRAIN ---------------- */
 askGroq = async function(userText, bodyEl, msgDiv){
   let sys = SYSTEM_PROMPT;
   if(memory.length){
@@ -953,13 +950,13 @@ function stopTimer(){
   if(h) h.style.display = "none";
 }
 
-/* ---------------- WEATHER (open-meteo, no key needed) ---------------- */
+/* ---------------- WEATHER ---------------- */
 const WCODES = {0:"clear skies",1:"mostly clear",2:"partly cloudy",3:"overcast",45:"fog",48:"fog",51:"light drizzle",53:"drizzle",55:"heavy drizzle",61:"light rain",63:"rain",65:"heavy rain",71:"light snow",73:"snow",75:"heavy snow",80:"rain showers",81:"rain showers",82:"violent rain showers",95:"a thunderstorm",96:"a thunderstorm with hail",99:"a severe thunderstorm"};
 async function getWeather(city){
   let lat, lon, place;
   if(city){
     const g = await (await fetch("https://geocoding-api.open-meteo.com/v1/search?count=1&name=" + encodeURIComponent(city))).json();
-    if(!g.results || !g.results.length) throw new Error("I couldn't locate “" + city + "”, sir. Perhaps check the spelling?");
+    if(!g.results || !g.results.length) throw new Error("I couldn't locate "" + city + "", sir.");
     lat = g.results[0].latitude; lon = g.results[0].longitude;
     place = g.results[0].name + (g.results[0].country ? ", " + g.results[0].country : "");
   } else {
@@ -989,47 +986,38 @@ async function handleCommand(raw){
   if(!bare && /jarvis/i.test(raw)) return "Yes, sir?";
   if(!bare) return null;
   let m;
-  /* silence */
   if(/^(stop|be quiet|quiet|shut up|silence)[.!]?$/.test(t)){ speechSynthesis.cancel(); setState("idle"); return "As you wish, sir."; }
-  /* time & date */
   if(/^(what(?:'s| is)? the time|what time is it|time)[?.!]?$/.test(t))
     return "It's " + new Date().toLocaleTimeString([], {hour:"2-digit", minute:"2-digit"}) + ", sir.";
   if(/^(what(?:'s| is)? the date|what day is it|date|today's date)[?.!]?$/.test(t))
     return "Today is " + new Date().toLocaleDateString([], {weekday:"long", day:"numeric", month:"long", year:"numeric"}) + ", sir.";
-  /* open / launch */
   m = t.match(/^(?:open|launch|go to)\s+(.+)$/);
   if(m){
     const target = m[1].replace(/[.!?]$/,"").trim();
     const key = Object.keys(SITES).find(k => target === k || target.startsWith(k + " ") || target.replace(/\s/g,"") === k);
     if(key) return openURL(SITES[key], key.charAt(0).toUpperCase() + key.slice(1));
     if(/^[\w-]+(\.[\w-]+)+$/.test(target)) return openURL("https://" + target, target);
-    return openURL("https://www.google.com/search?q=" + encodeURIComponent(target), "search results for “" + target + "”");
+    return openURL("https://www.google.com/search?q=" + encodeURIComponent(target), "search results for "" + target + """);
   }
-  /* play */
   m = t.match(/^play\s+(.+)$/);
-  if(m) return openURL("https://www.youtube.com/results?search_query=" + encodeURIComponent(m[1].replace(/[.!?]$/,"")), "“" + m[1].replace(/[.!?]$/,"") + "” on YouTube");
-  /* search */
+  if(m) return openURL("https://www.youtube.com/results?search_query=" + encodeURIComponent(m[1].replace(/[.!?]$/,"")), """ + m[1].replace(/[.!?]$/,"") + "" on YouTube");
   m = t.match(/^(?:search(?: for)?|google)\s+(.+)$/);
   if(m) return openURL("https://www.google.com/search?q=" + encodeURIComponent(m[1].replace(/[.!?]$/,"")), "search results");
-  /* timer */
   m = t.match(/timer\s*(?:for)?\s*(\d+(?:\.\d+)?)\s*(hours?|hrs?|minutes?|mins?|seconds?|secs?)/);
   if(m){
     const n = parseFloat(m[1]);
     const secs = /^h/.test(m[2]) ? n * 3600 : /^m/.test(m[2]) ? n * 60 : n;
-    if(secs < 1 || secs > 86400) return "A timer between one second and twenty-four hours, sir — within reason.";
+    if(secs < 1 || secs > 86400) return "A timer between one second and twenty-four hours, sir.";
     startTimer(secs);
     return "Timer set for " + m[1] + " " + m[2] + ". I'll alert you the moment it's done, sir.";
   }
-  /* add task */
   m = bare.match(/^(?:add (?:a )?task|new task|add objective|remind me to)\s+(.+)$/i);
-  if(m){ tasks.push({text: m[1].replace(/[.!?]$/,""), done:false}); saveTasks(); return "Objective logged: “" + m[1].replace(/[.!?]$/,"") + "”. It's on your mission board, sir."; }
-  /* weather */
+  if(m){ tasks.push({text: m[1].replace(/[.!?]$/,""), done:false}); saveTasks(); return "Objective logged: "" + m[1].replace(/[.!?]$/,"") + "". It's on your mission board, sir."; }
   m = t.match(/^(?:what(?:'s| is)?\s+(?:the\s+)?)?(?:weather|temperature)(?:\s+(?:like\s+)?(?:in|at|for)\s+(.+?))?[?.!]*$/);
   if(m) {
     try{ return await getWeather(m[1] || null); }
-    catch(e){ return e.message && e.message.includes("locate") ? e.message : "I couldn't get a location fix, sir. Try “weather in Delhi”."; }
+    catch(e){ return e.message && e.message.includes("locate") ? e.message : "I couldn't get a location fix, sir. Try "weather in Delhi"."; }
   }
-  /* memory */
   m = bare.match(/^remember(?: that)?\s+(.+)$/i);
   if(m){ remember(m[1]); return "Committed to memory, sir."; }
   if(/^(what do you remember|what do you know about me|show (?:your )?memory)[?.!]?$/.test(t))
@@ -1037,15 +1025,13 @@ async function handleCommand(raw){
       ? "Here's what I have on file, sir:\n" + memory.map(f => "• " + (f.startsWith("NAME:") ? "Your name is " + f.slice(5) : f)).join("\n")
       : "My memory banks are empty, sir. Tell me to remember something.";
   if(/^(forget everything|wipe (?:your )?memory|clear (?:your )?memory)[.!]?$/.test(t)){ memory = []; saveMem(); return "Memory core wiped clean, sir."; }
-  /* name capture without "remember" */
   m = bare.match(/^(?:my name is|call me)\s+(.+)$/i);
   if(m){ remember("my name is " + m[1]); return "A pleasure, " + m[1].replace(/[.!?]$/,"") + ". I won't forget it."; }
-  /* clear chat */
   if(/^clear (?:the )?chat[.!]?$/.test(t)){ document.getElementById("clearBtn").click(); return ""; }
-  return null; /* not a command → LLM */
+  return null;
 }
 
-/* ---------------- SEND WRAPPER (commands first, then LLM) ---------------- */
+/* ---------------- SEND WRAPPER ---------------- */
 const llmSend = send;
 send = async function(){
   const input = document.getElementById("userInput");
@@ -1073,59 +1059,87 @@ send = async function(){
 };
 document.getElementById("sendBtn").onclick = () => send();
 
-/* ---------------- WAKE WORD — "JARVIS" ---------------- */
+/* ---------------- WAKE WORD — FIXED WITH ROBUST AUTO-RESTART ---------------- */
 let wakeOn = localStorage.getItem("jarvis_wake") === "on";
 let wakeRec = null, wakeActive = false, awaitingCmd = false, awaitTimer = null;
 const wakeBtn = document.createElement("button");
 wakeBtn.className = "gear";
 wakeBtn.style.marginLeft = "8px";
 document.querySelector(".sysinfo").appendChild(wakeBtn);
+
 function paintWake(){
   wakeBtn.textContent = wakeOn ? "◉ WAKE ON" : "○ WAKE OFF";
   wakeBtn.style.color = wakeOn ? "#7df2ff" : "";
   wakeBtn.style.borderColor = wakeOn ? "var(--cyan)" : "";
   wakeBtn.style.boxShadow = wakeOn ? "0 0 14px #00d4ff33" : "";
 }
+
+let wakeRestartTimer = null;
 function startWake(){
   if(!SR || !wakeOn || wakeActive || recording) return;
-  wakeRec = new SR();
-  wakeRec.continuous = true; wakeRec.interimResults = false; wakeRec.lang = "en-US";
-  wakeRec.onresult = e => {
-    const said = e.results[e.results.length - 1][0].transcript.trim();
-    if(!said) return;
-    if(awaitingCmd){
-      clearTimeout(awaitTimer); awaitingCmd = false; setState("idle");
-      document.getElementById("userInput").value = said;
-      send();
-      return;
-    }
-    const low = said.toLowerCase();
-    const idx = low.indexOf("jarvis");
-    if(idx === -1) return;
-    const after = said.slice(idx + 6).replace(/^[,!. ]+/, "").trim();
-    if(after){
-      document.getElementById("userInput").value = after;
-      send();
-    } else {
-      awaitingCmd = true;
-      coreState.textContent = "LISTENING";
-      core.className = "thinking";
-      speak("Yes, sir?");
-      awaitTimer = setTimeout(() => { awaitingCmd = false; setState("idle"); }, 9000);
-    }
-  };
-  wakeRec.onerror = () => {};
-  wakeRec.onend = () => { wakeActive = false; if(wakeOn && !recording) setTimeout(startWake, 500); };
-  try{ wakeRec.start(); wakeActive = true; }catch(e){}
+  clearTimeout(wakeRestartTimer);
+  try {
+    wakeRec = new SR();
+    wakeRec.continuous = false;   /* KEY FIX: false = auto-restarts cleanly, no silent timeout */
+    wakeRec.interimResults = false;
+    wakeRec.lang = "en-US";
+    wakeRec.onresult = e => {
+      const said = e.results[0][0].transcript.trim();
+      if(!said) return;
+      if(awaitingCmd){
+        clearTimeout(awaitTimer); awaitingCmd = false; setState("idle");
+        document.getElementById("userInput").value = said;
+        send();
+        return;
+      }
+      const low = said.toLowerCase();
+      const idx = low.indexOf("jarvis");
+      if(idx === -1) return;
+      const after = said.slice(idx + 6).replace(/^[,!. ]+/, "").trim();
+      if(after){
+        document.getElementById("userInput").value = after;
+        send();
+      } else {
+        awaitingCmd = true;
+        coreState.textContent = "LISTENING";
+        core.className = "thinking";
+        speak("Yes, sir?");
+        awaitTimer = setTimeout(() => { awaitingCmd = false; setState("idle"); }, 9000);
+      }
+    };
+    wakeRec.onerror = e => {
+      /* Ignore no-speech — that's normal silence, just restart */
+      if(e.error === "no-speech" || e.error === "aborted") return;
+      console.warn("wake err:", e.error);
+    };
+    wakeRec.onend = () => {
+      wakeActive = false;
+      /* Always restart after a short delay as long as wake is ON and not recording */
+      if(wakeOn && !recording){
+        wakeRestartTimer = setTimeout(startWake, 300);
+      }
+    };
+    wakeRec.start();
+    wakeActive = true;
+  } catch(e) {
+    wakeActive = false;
+    if(wakeOn) wakeRestartTimer = setTimeout(startWake, 1000);
+  }
 }
+
 function stopWake(){
-  if(wakeRec){ try{ wakeRec.onend = null; wakeRec.stop(); }catch(e){} wakeRec = null; }
+  clearTimeout(wakeRestartTimer);
+  if(wakeRec){
+    try{ wakeRec.onend = null; wakeRec.onerror = null; wakeRec.stop(); }catch(e){}
+    wakeRec = null;
+  }
   wakeActive = false;
 }
 function pauseWake(){ if(wakeOn) stopWake(); }
-function resumeWake(){ if(wakeOn && !recording) setTimeout(startWake, 300); }
+function resumeWake(){ if(wakeOn && !recording) wakeRestartTimer = setTimeout(startWake, 400); }
+
 wakeBtn.onclick = () => {
-  if(!SR){ addMsg("sys", "VOICE RECOGNITION NOT SUPPORTED IN THIS BROWSER — USE CHROME"); return; }
+  if(!SR){ addMsg("sys", "VOICE RECOGNITION NOT SUPPORTED — USE CHROME"); return; }
   wakeOn = !wakeOn;
   localStorage.setItem("jarvis_wake", wakeOn ? "on" : "off");
   paintWake();
@@ -1134,7 +1148,7 @@ wakeBtn.onclick = () => {
 };
 paintWake();
 if(wakeOn) setTimeout(startWake, 3000);
-/* manual mic pauses wake listening */
+
 if(rec){
   const oldEnd = rec.onend;
   rec.onend = () => { if(oldEnd) oldEnd(); resumeWake(); };
@@ -1149,16 +1163,16 @@ core.onclick = () => { pauseWake(); startMic(); };
   b.className = "chip"; b.textContent = "🎛 Voice commands";
   b.onclick = () => addMsg("jarvis",
     "**At your command, sir — say or type:**\n" +
-    "• “Jarvis …” — wake word (arm it top-right)\n" +
-    "• “open youtube / gmail / github / any site”\n" +
-    "• “play <song or video>”\n" +
-    "• “search <anything>”\n" +
-    "• “set a timer for 10 minutes”\n" +
-    "• “add task <objective>” / “remind me to …”\n" +
-    "• “what's the weather in Delhi”\n" +
-    "• “remember my exam is on the 20th”\n" +
-    "• “what do you remember” · “forget everything”\n" +
-    "• “what time is it” · “stop” to silence me", false);
+    "• "Jarvis …" — wake word (arm it top-right)\n" +
+    "• "open youtube / gmail / github / any site"\n" +
+    "• "play <song or video>"\n" +
+    "• "search <anything>"\n" +
+    "• "set a timer for 10 minutes"\n" +
+    "• "add task <objective>" / "remind me to …"\n" +
+    "• "what's the weather in Delhi"\n" +
+    "• "remember my exam is on the 20th"\n" +
+    "• "what do you remember" · "forget everything"\n" +
+    "• "what time is it" · "stop" to silence me", false);
   chips.appendChild(b);
 })();
 
@@ -1171,14 +1185,12 @@ setTimeout(() => {
   addMsg("jarvis",
     "Good " + tod + (nm ? ", " + nm : ", sir") + ". Memory core loaded — " + memory.length +
     " record" + (memory.length === 1 ? "" : "s") + " on file." +
-    (wakeOn ? " Wake word is armed; just say “Jarvis”." : ""), false);
+    (wakeOn ? " Wake word is armed; just say "Jarvis"." : ""), false);
 }, 3600);
-
 </script>
-<script>
-/* ============ MARK IX UPGRADE — instant-open fix · PC LINK bridge ============ */
 
-/* ---------------- PC LINK (local Python agent) ---------------- */
+<script>
+/* ============ MARK IX — PC LINK bridge ============ */
 let pcOnline = false, pcAnnounced = false;
 const AGENT = "http://127.0.0.1:7777";
 (function(){
@@ -1195,7 +1207,7 @@ function paintPc(){
   b.style.color = pcOnline ? "#7dff9b" : "";
   if(pcOnline && !pcAnnounced){
     pcAnnounced = true;
-    addMsg("sys", "🖥 PC LINK ESTABLISHED — TRY: open notepad · open chrome · lock pc · screenshot", false);
+    addMsg("sys", "🖥 PC LINK ESTABLISHED — TRY: open notepad · lock pc · screenshot", false);
   }
 }
 async function pingAgent(){
@@ -1210,14 +1222,12 @@ async function pingAgent(){
 pingAgent();
 setInterval(pingAgent, 12000);
 
-/* ---------------- PC commands (run before normal commands) ---------------- */
 const baseHandle = handleCommand;
 handleCommand = async function(raw){
   const bare = stripWake(raw);
   const t = bare.toLowerCase();
   let m;
   if(pcOnline){
-    /* open local apps — anything that isn't a known website */
     m = t.match(/^(?:open|launch|start)\s+(?:app\s+)?(.+)$/);
     if(m){
       const target = m[1].replace(/[.!?]$/,"").trim();
@@ -1235,7 +1245,7 @@ handleCommand = async function(raw){
       const act = m[1].replace(/\s/g, "") === "shutdown" || m[1] === "shut down" ? "shutdown" : m[1];
       try{
         const r = await (await fetch(AGENT + "/system?action=" + act)).json();
-        if(r.ok) return (act === "lock" ? "Locking" : act === "sleep" ? "Putting to sleep" : act === "shutdown" ? "Shutting down in 5 seconds" : "Restarting in 5 seconds") + ", sir.";
+        if(r.ok) return (act === "lock" ? "Locking" : act === "sleep" ? "Putting to sleep" : act === "shutdown" ? "Shutting down" : "Restarting") + ", sir.";
       }catch(e){}
     }
     if(/^(take a |grab a )?screenshot[.!]?$/.test(t)){
@@ -1245,12 +1255,12 @@ handleCommand = async function(raw){
       }catch(e){}
     }
   } else if(/^(lock|sleep|shutdown|restart)(\s|$)/.test(t) || /^(take a )?screenshot/.test(t) || /^(?:open|launch|start)\s+app\s+/.test(t)){
-    return "PC Link is offline, sir. Run jarvis_agent.py in PyCharm and I'll have full control of this machine.";
+    return "PC Link is offline, sir. Run jarvis_agent.py in PyCharm and I'll have full control.";
   }
   return baseHandle(raw);
 };
 
-/* ---------------- INSTANT-OPEN FIX (keeps the click gesture alive) ---------------- */
+/* ---------------- INSTANT-OPEN FIX ---------------- */
 (function(){
   const asyncSend = send;
   function syncOpen(text){
@@ -1260,17 +1270,17 @@ handleCommand = async function(raw){
     m = t.match(/^(?:open|launch|go to)\s+(.+)$/);
     if(m){
       const target = m[1].replace(/[.!?]$/,"").trim();
-      if(/^app\s+/.test(target)) return null;                 /* explicit local app → agent */
+      if(/^app\s+/.test(target)) return null;
       const key = Object.keys(SITES).find(k => target === k || target.startsWith(k + " ") || target.replace(/\s/g,"") === k);
       if(key) return {url: SITES[key], label: key.charAt(0).toUpperCase() + key.slice(1)};
       if(/^[\w-]+(\.[\w-]+)+$/.test(target)) return {url: "https://" + target, label: target};
-      if(pcOnline) return null;                               /* let the local agent try it */
-      return {url: "https://www.google.com/search?q=" + encodeURIComponent(target), label: "search results for “" + target + "”"};
+      if(pcOnline) return null;
+      return {url: "https://www.google.com/search?q=" + encodeURIComponent(target), label: "search results for "" + target + """};
     }
     m = t.match(/^play\s+(.+)$/);
     if(m){
       const q = m[1].replace(/[.!?]$/,"");
-      return {url: "https://www.youtube.com/results?search_query=" + encodeURIComponent(q), label: "“" + q + "” on YouTube"};
+      return {url: "https://www.youtube.com/results?search_query=" + encodeURIComponent(q), label: """ + q + "" on YouTube"};
     }
     m = t.match(/^(?:search(?: for)?|google)\s+(.+)$/);
     if(m){
@@ -1285,17 +1295,17 @@ handleCommand = async function(raw){
     if(!text || busy) return;
     const hit = syncOpen(text);
     if(hit){
-      const w = window.open(hit.url, "_blank");   /* fires inside the original click/Enter — not blocked */
+      const w = window.open(hit.url, "_blank");
       input.value = "";
       addMsg("user", text);
       if(w){
         const r = "Opening " + hit.label + ", sir.";
         addMsg("jarvis", r); speak(r);
       } else {
-        addMsg("jarvis", "Popups are blocked here, sir — tap the link below. To let me open things directly, click the blocked-popup icon in the address bar and choose “Always allow”.");
+        addMsg("jarvis", "Popups are blocked, sir — tap the link below.");
         const {body} = addMsg("jarvis", "", false);
         body.innerHTML = '<a href="' + hit.url + '" target="_blank" style="color:var(--cyan);font-family:var(--mono);font-size:11px;letter-spacing:2px;text-decoration:none;border:1px solid #14425c;padding:9px 16px;display:inline-block;background:#00d4ff0d">▸ OPEN ' + esc(hit.label).toUpperCase() + '</a>';
-        speak("Popups are blocked here, sir. The link is on screen.");
+        speak("Popups are blocked, sir. The link is on screen.");
       }
       return;
     }
@@ -1304,22 +1314,20 @@ handleCommand = async function(raw){
   document.getElementById("sendBtn").onclick = () => send();
 })();
 
-/* ---------------- cheat-sheet update ---------------- */
+/* ---------------- PC control chip ---------------- */
 (function(){
   const chips = document.getElementById("chips");
   if(!chips) return;
   const b = document.createElement("button");
   b.className = "chip"; b.textContent = "🖥 PC control";
   b.onclick = () => addMsg("jarvis",
-    "**PC control commands** (needs jarvis_agent.py running — PC LINK must show ONLINE in the header):\n" +
-    "• “open notepad / chrome / calculator / vscode / spotify”\n" +
-    "• “open app <anything installed>”\n" +
-    "• “screenshot” — saves to desktop\n" +
-    "• “lock pc” · “sleep” · “shutdown” · “restart”\n\n" +
-    "Without the agent I can still open websites, play music, search, set timers and remember things.", false);
+    "**PC control** (needs jarvis_agent.py running — PC LINK must show ONLINE):\n" +
+    "• "open notepad / chrome / calculator"\n" +
+    "• "open app <anything installed>"\n" +
+    "• "screenshot" — saves to desktop\n" +
+    "• "lock pc" · "sleep" · "shutdown" · "restart"", false);
   chips.appendChild(b);
 })();
-
 </script>
 </body>
 </html>
