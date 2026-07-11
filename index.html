@@ -604,7 +604,13 @@ let rec = null, recording = false;
 if(SR){
   rec = new SR();
   rec.lang = "en-US"; rec.interimResults = false;
-  rec.onresult = e => { $("userInput").value = e.results[0][0].transcript; send(); };
+  rec.onresult = e => {
+  const last = e.results[e.results.length - 1];
+  if(!last || !last[0]) return;
+  $("userInput").value = last[0].transcript.trim();
+  send();
+};
+
   rec.onend = ()=>{ recording = false; micBtn.classList.remove("rec"); };
 } else { micBtn.style.opacity = .3; micBtn.title = "Voice input not supported in this browser"; }
 function startMic(){
