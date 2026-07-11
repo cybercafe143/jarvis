@@ -1115,7 +1115,8 @@ function startWake(){
     }
   };
   wakeRec.onerror = () => {};
-  wakeRec.onend = () => { wakeActive = false; if(wakeOn && !recording) setTimeout(startWake, 500); };
+ wakeRec.onerror = e => { if(e.error === "no-speech" || e.error === "aborted") return; };
+wakeRec.onend = () => { wakeActive = false; if(wakeOn && !recording) setTimeout(startWake, 300); };
   try{ wakeRec.start(); wakeActive = true; }catch(e){}
 }
 function stopWake(){
