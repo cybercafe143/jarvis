@@ -1089,7 +1089,7 @@ function paintWake(){
 function startWake(){
   if(!SR || !wakeOn || wakeActive || recording) return;
   wakeRec = new SR();
-  wakeRec.continuous = true; wakeRec.interimResults = false; wakeRec.lang = "en-US";
+  wakeRec.continuous = false; wakeRec.interimResults = false; wakeRec.lang = "en-US";
   wakeRec.onresult = e => {
     const said = e.results[e.results.length - 1][0].transcript.trim();
     if(!said) return;
