@@ -4,9 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>J.A.R.V.I.S — Command Center</title>
-
-
-<style type="text/css">@font-face {font-family:Orbitron;font-style:normal;font-weight:500;src:url(/cf-fonts/v/orbitron/5.2.8/latin/wght/normal.woff2);unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;font-display:swap;}@font-face {font-family:Orbitron;font-style:normal;font-weight:700;src:url(/cf-fonts/v/orbitron/5.2.8/latin/wght/normal.woff2);unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;font-display:swap;}@font-face {font-family:Orbitron;font-style:normal;font-weight:900;src:url(/cf-fonts/v/orbitron/5.2.8/latin/wght/normal.woff2);unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;font-display:swap;}@font-face {font-family:Rajdhani;font-style:normal;font-weight:400;src:url(/cf-fonts/s/rajdhani/5.2.7/latin-ext/400/normal.woff2);unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF;font-display:swap;}@font-face {font-family:Rajdhani;font-style:normal;font-weight:400;src:url(/cf-fonts/s/rajdhani/5.2.7/devanagari/400/normal.woff2);unicode-range:U+0900-097F,U+1CD0-1CF9,U+200C-200D,U+20A8,U+20B9,U+20F0,U+25CC,U+A830-A839,U+A8E0-A8FF,U+11B00-11B09;font-display:swap;}@font-face {font-family:Rajdhani;font-style:normal;font-weight:400;src:url(/cf-fonts/s/rajdhani/5.2.7/latin/400/normal.woff2);unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;font-display:swap;}@font-face {font-family:Rajdhani;font-style:normal;font-weight:500;src:url(/cf-fonts/s/rajdhani/5.2.7/latin/500/normal.woff2);unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;font-display:swap;}@font-face {font-family:Rajdhani;font-style:normal;font-weight:500;src:url(/cf-fonts/s/rajdhani/5.2.7/devanagari/500/normal.woff2);unicode-range:U+0900-097F,U+1CD0-1CF9,U+200C-200D,U+20A8,U+20B9,U+20F0,U+25CC,U+A830-A839,U+A8E0-A8FF,U+11B00-11B09;font-display:swap;}@font-face {font-family:Rajdhani;font-style:normal;font-weight:500;src:url(/cf-fonts/s/rajdhani/5.2.7/latin-ext/500/normal.woff2);unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF;font-display:swap;}@font-face {font-family:Rajdhani;font-style:normal;font-weight:600;src:url(/cf-fonts/s/rajdhani/5.2.7/devanagari/600/normal.woff2);unicode-range:U+0900-097F,U+1CD0-1CF9,U+200C-200D,U+20A8,U+20B9,U+20F0,U+25CC,U+A830-A839,U+A8E0-A8FF,U+11B00-11B09;font-display:swap;}@font-face {font-family:Rajdhani;font-style:normal;font-weight:600;src:url(/cf-fonts/s/rajdhani/5.2.7/latin-ext/600/normal.woff2);unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF;font-display:swap;}@font-face {font-family:Rajdhani;font-style:normal;font-weight:600;src:url(/cf-fonts/s/rajdhani/5.2.7/latin/600/normal.woff2);unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;font-display:swap;}@font-face {font-family:Share Tech Mono;font-style:normal;font-weight:400;src:url(/cf-fonts/s/share-tech-mono/5.2.7/latin/400/normal.woff2);unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;font-display:swap;}</style>
+<style type="text/css">@font-face {font-family:Orbitron;font-style:normal;font-weight:500;src:url(/cf-fonts/v/orbitron/5.2.8/latin/wght/normal.woff2);unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;font-display:swap;}@font-face {font-family:Orbitron;font-style:normal;font-weight:700;src:url(/cf-fonts/v/orbitron/5.2.8/latin/wght/normal.woff2);unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;font-display:swap;}@font-face {font-family:Orbitron;font-style:normal;font-weight:900;src:url(/cf-fonts/v/orbitron/5.2.8/latin/wght/normal.woff2);unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;font-display:swap;}@font-face {font-family:Rajdhani;font-style:normal;font-weight:400;src:url(/cf-fonts/s/rajdhani/5.2.7/devanagari/400/normal.woff2);unicode-range:U+0900-097F,U+1CD0-1CF9,U+200C-200D,U+20A8,U+20B9,U+20F0,U+25CC,U+A830-A839,U+A8E0-A8FF,U+11B00-11B09;font-display:swap;}@font-face {font-family:Rajdhani;font-style:normal;font-weight:400;src:url(/cf-fonts/s/rajdhani/5.2.7/latin/400/normal.woff2);unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;font-display:swap;}@font-face {font-family:Rajdhani;font-style:normal;font-weight:400;src:url(/cf-fonts/s/rajdhani/5.2.7/latin-ext/400/normal.woff2);unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF;font-display:swap;}@font-face {font-family:Rajdhani;font-style:normal;font-weight:500;src:url(/cf-fonts/s/rajdhani/5.2.7/latin/500/normal.woff2);unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;font-display:swap;}@font-face {font-family:Rajdhani;font-style:normal;font-weight:500;src:url(/cf-fonts/s/rajdhani/5.2.7/devanagari/500/normal.woff2);unicode-range:U+0900-097F,U+1CD0-1CF9,U+200C-200D,U+20A8,U+20B9,U+20F0,U+25CC,U+A830-A839,U+A8E0-A8FF,U+11B00-11B09;font-display:swap;}@font-face {font-family:Rajdhani;font-style:normal;font-weight:500;src:url(/cf-fonts/s/rajdhani/5.2.7/latin-ext/500/normal.woff2);unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF;font-display:swap;}@font-face {font-family:Rajdhani;font-style:normal;font-weight:600;src:url(/cf-fonts/s/rajdhani/5.2.7/latin/600/normal.woff2);unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;font-display:swap;}@font-face {font-family:Rajdhani;font-style:normal;font-weight:600;src:url(/cf-fonts/s/rajdhani/5.2.7/devanagari/600/normal.woff2);unicode-range:U+0900-097F,U+1CD0-1CF9,U+200C-200D,U+20A8,U+20B9,U+20F0,U+25CC,U+A830-A839,U+A8E0-A8FF,U+11B00-11B09;font-display:swap;}@font-face {font-family:Rajdhani;font-style:normal;font-weight:600;src:url(/cf-fonts/s/rajdhani/5.2.7/latin-ext/600/normal.woff2);unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF;font-display:swap;}@font-face {font-family:Share Tech Mono;font-style:normal;font-weight:400;src:url(/cf-fonts/s/share-tech-mono/5.2.7/latin/400/normal.woff2);unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;font-display:swap;}</style>
 <style>
   :root{
     --cyan:#00d4ff; --cyan-bright:#7df2ff; --cyan-dim:#00d4ff55; --cyan-faint:#00d4ff14;
@@ -343,7 +341,7 @@
 
   <header>
     <div class="status-dot"></div>
-    <div class="logo">J.A.R.V.I.S<small>MARK IX · BUILD 5.0 · STARK INDUSTRIES</small></div>
+    <div class="logo">J.A.R.V.I.S<small>MARK XII · BUILD 8.0 · STARK INDUSTRIES</small></div>
     <div class="sysinfo">
       <span><em>CPU</em><b id="cpuStat">--%</b></span>
       <span><em>MEM</em><b id="memStat">--%</b></span>
@@ -606,13 +604,7 @@ let rec = null, recording = false;
 if(SR){
   rec = new SR();
   rec.lang = "en-US"; rec.interimResults = false;
-  rec.onresult = e => {
-  const last = e.results[e.results.length - 1];
-  if(!last || !last[0]) return;
-  $("userInput").value = last[0].transcript.trim();
-  send();
-};
-
+  rec.onresult = e => { $("userInput").value = e.results[0][0].transcript; send(); };
   rec.onend = ()=>{ recording = false; micBtn.classList.remove("rec"); };
 } else { micBtn.style.opacity = .3; micBtn.title = "Voice input not supported in this browser"; }
 function startMic(){
@@ -1082,229 +1074,73 @@ send = async function(){
 document.getElementById("sendBtn").onclick = () => send();
 
 /* ---------------- WAKE WORD — "JARVIS" ---------------- */
-/* ---------------- WAKE WORD — "JARVIS" ---------------- */
 let wakeOn = localStorage.getItem("jarvis_wake") === "on";
-let wakeRec = null;
-let wakeActive = false;
-let awaitingCmd = false;
-let awaitTimer = null;
-let wakeRestartTimer = null;
-let wakeBootstrapped = false;
-
+let wakeRec = null, wakeActive = false, awaitingCmd = false, awaitTimer = null;
 const wakeBtn = document.createElement("button");
 wakeBtn.className = "gear";
 wakeBtn.style.marginLeft = "8px";
 document.querySelector(".sysinfo").appendChild(wakeBtn);
-
 function paintWake(){
   wakeBtn.textContent = wakeOn ? "◉ WAKE ON" : "○ WAKE OFF";
   wakeBtn.style.color = wakeOn ? "#7df2ff" : "";
   wakeBtn.style.borderColor = wakeOn ? "var(--cyan)" : "";
   wakeBtn.style.boxShadow = wakeOn ? "0 0 14px #00d4ff33" : "";
 }
-
-function clearWakeRestart(){
-  if(wakeRestartTimer){
-    clearTimeout(wakeRestartTimer);
-    wakeRestartTimer = null;
-  }
-}
-
-function scheduleWakeRestart(delay = 500){
-  clearWakeRestart();
-  if(!wakeOn || recording || speechSynthesis.speaking) return;
-  wakeRestartTimer = setTimeout(() => {
-    startWake();
-  }, delay);
-}
-
-function makeWakeRecognizer(){
-  if(!SR) return null;
-
-  const r = new SR();
-  r.lang = "en-US";
-  r.interimResults = false;
-  r.continuous = true;
-  r.maxAlternatives = 1;
-
-  r.onstart = () => {
-    wakeActive = true;
-  };
-
-  r.onresult = async (e) => {
-    const last = e.results[e.results.length - 1];
-    if(!last || !last[0]) return;
-
-    const saidRaw = last[0].transcript.trim();
-    const said = saidRaw.toLowerCase();
-
+function startWake(){
+  if(!SR || !wakeOn || wakeActive || recording) return;
+  wakeRec = new SR();
+  wakeRec.continuous = true; wakeRec.interimResults = false; wakeRec.lang = "en-US";
+  wakeRec.onresult = e => {
+    const said = e.results[e.results.length - 1][0].transcript.trim();
     if(!said) return;
-
     if(awaitingCmd){
-      clearTimeout(awaitTimer);
-      awaitingCmd = false;
-      pauseWake();
-      const reply = await handleCommand(saidRaw);
-      if(reply) speak(reply);
+      clearTimeout(awaitTimer); awaitingCmd = false; setState("idle");
+      document.getElementById("userInput").value = said;
+      send();
       return;
     }
-
-    const heardWake =
-      /\bjarvis\b/i.test(saidRaw) ||
-      /\bhey jarvis\b/i.test(saidRaw) ||
-      /\bokay jarvis\b/i.test(saidRaw) ||
-      /\bok jarvis\b/i.test(saidRaw);
-
-    if(!heardWake) return;
-
-    const bare = stripWake(saidRaw);
-
-    if(bare){
-      pauseWake();
-      const reply = await handleCommand(saidRaw);
-      if(reply) speak(reply);
+    const low = said.toLowerCase();
+    const idx = low.indexOf("jarvis");
+    if(idx === -1) return;
+    const after = said.slice(idx + 6).replace(/^[,!. ]+/, "").trim();
+    if(after){
+      document.getElementById("userInput").value = after;
+      send();
     } else {
       awaitingCmd = true;
       coreState.textContent = "LISTENING";
       core.className = "thinking";
       speak("Yes, sir?");
-      awaitTimer = setTimeout(() => {
-        awaitingCmd = false;
-      }, 7000);
+      awaitTimer = setTimeout(() => { awaitingCmd = false; setState("idle"); }, 9000);
     }
   };
-
-  r.onerror = (e) => {
-    wakeActive = false;
-
-    if(!e) return;
-    if(e.error === "no-speech" || e.error === "aborted") return;
-
-    if(e.error === "not-allowed" || e.error === "service-not-allowed"){
-      wakeOn = false;
-      localStorage.setItem("jarvis_wake", "off");
-      paintWake();
-      addMsg("sys", "MICROPHONE PERMISSION BLOCKED — ALLOW MIC ACCESS AND ARM WAKE AGAIN");
-      return;
-    }
-
-    scheduleWakeRestart(1200);
-  };
-
-  r.onend = () => {
-    wakeActive = false;
-    if(wakeOn && !recording && !speechSynthesis.speaking){
-      scheduleWakeRestart(600);
-    }
-  };
-
-  return r;
+  wakeRec.onerror = () => {};
+  wakeRec.onend = () => { wakeActive = false; if(wakeOn && !recording) setTimeout(startWake, 500); };
+  try{ wakeRec.start(); wakeActive = true; }catch(e){}
 }
-
-function startWake(){
-  if(!SR || !wakeOn || recording || speechSynthesis.speaking) return;
-  if(wakeActive) return;
-
-  clearWakeRestart();
-
-  try{
-    if(!wakeRec){
-      wakeRec = makeWakeRecognizer();
-    }
-    if(!wakeRec) return;
-    wakeRec.start();
-  }catch(e){
-    scheduleWakeRestart(1000);
-  }
-}
-
 function stopWake(){
-  clearWakeRestart();
-  awaitingCmd = false;
-  clearTimeout(awaitTimer);
-
-  if(wakeRec){
-    try{ wakeRec.stop(); }catch(e){}
-  }
+  if(wakeRec){ try{ wakeRec.onend = null; wakeRec.stop(); }catch(e){} wakeRec = null; }
   wakeActive = false;
 }
-
-function pauseWake(){
-  if(wakeOn) stopWake();
-}
-
-function resumeWake(){
-  if(wakeOn && !recording && !speechSynthesis.speaking){
-    scheduleWakeRestart(500);
-  }
-}
-
-wakeBtn.onclick = async () => {
-  if(!SR){
-    addMsg("sys", "VOICE RECOGNITION NOT SUPPORTED IN THIS BROWSER — USE CHROME");
-    return;
-  }
-
-  if(!wakeBootstrapped){
-    wakeBootstrapped = true;
-    try{
-      const testRec = new SR();
-      testRec.start();
-      setTimeout(() => {
-        try{ testRec.stop(); }catch(e){}
-      }, 150);
-    }catch(e){}
-  }
-
+function pauseWake(){ if(wakeOn) stopWake(); }
+function resumeWake(){ if(wakeOn && !recording) setTimeout(startWake, 300); }
+wakeBtn.onclick = () => {
+  if(!SR){ addMsg("sys", "VOICE RECOGNITION NOT SUPPORTED IN THIS BROWSER — USE CHROME"); return; }
   wakeOn = !wakeOn;
   localStorage.setItem("jarvis_wake", wakeOn ? "on" : "off");
   paintWake();
-
-  if(wakeOn){
-    startWake();
-    addMsg("sys", '◉ WAKE WORD ARMED — JUST SAY "JARVIS"');
-    speak("Wake word armed. Just say Jarvis, sir.");
-  } else {
-    stopWake();
-    addMsg("sys", "○ WAKE WORD DISARMED");
-  }
+  if(wakeOn){ startWake(); addMsg("sys", '◉ WAKE WORD ARMED — JUST SAY "JARVIS"'); speak("Wake word armed. Just say Jarvis, sir."); }
+  else { stopWake(); addMsg("sys", "○ WAKE WORD DISARMED"); }
 };
-
 paintWake();
-if(wakeOn){
-  setTimeout(() => {
-    if(!speechSynthesis.speaking && !recording) startWake();
-  }, 1200);
-}
-
+if(wakeOn) setTimeout(startWake, 3000);
 /* manual mic pauses wake listening */
 if(rec){
   const oldEnd = rec.onend;
-  rec.onend = () => {
-    if(oldEnd) oldEnd();
-    resumeWake();
-  };
+  rec.onend = () => { if(oldEnd) oldEnd(); resumeWake(); };
 }
-micBtn.onclick = () => {
-  pauseWake();
-  startMic();
-};
-core.onclick = () => {
-  pauseWake();
-  startMic();
-};
-
-document.addEventListener("visibilitychange", () => {
-  if(document.hidden){
-    stopWake();
-  } else if(wakeOn){
-    scheduleWakeRestart(800);
-  }
-});
-
-window.addEventListener("focus", () => {
-  if(wakeOn) scheduleWakeRestart(600);
-});
+micBtn.onclick = () => { pauseWake(); startMic(); };
+core.onclick = () => { pauseWake(); startMic(); };
 
 /* ---------------- COMMANDS CHEAT-SHEET CHIP ---------------- */
 (function(){
@@ -1482,6 +1318,610 @@ handleCommand = async function(raw){
     "• “lock pc” · “sleep” · “shutdown” · “restart”\n\n" +
     "Without the agent I can still open websites, play music, search, set timers and remember things.", false);
   chips.appendChild(b);
+})();
+
+</script>
+<script>
+/* ============ MARK IX-B — voice reliability & diagnostics patch ============ */
+(function(){
+  const input = document.getElementById("userInput");
+  if(!SR){
+    addMsg("sys", "⚠ VOICE NOT SUPPORTED IN THIS BROWSER — PLEASE USE GOOGLE CHROME", false);
+    return;
+  }
+  let warned = false;
+  function micError(e){
+    const code = e && e.error;
+    if(code === "no-speech" || code === "aborted") return;
+    if(code === "not-allowed" || code === "service-not-allowed"){
+      if(!warned){
+        warned = true;
+        addMsg("sys", "⚠ MICROPHONE BLOCKED — CLICK THE 🔒 ICON IN THE ADDRESS BAR → SITE SETTINGS → MICROPHONE → ALLOW → RELOAD", false);
+        speak("Sir, I don't have microphone permission. Please allow it from the address bar and reload.");
+      }
+    } else if(code === "audio-capture"){
+      addMsg("sys", "⚠ NO MICROPHONE DETECTED — CHECK IT'S CONNECTED AND NOT IN USE BY ANOTHER APP OR TAB", false);
+    } else if(code === "network"){
+      addMsg("sys", "⚠ VOICE RECOGNITION NEEDS INTERNET — CHECK YOUR CONNECTION", false);
+    }
+  }
+  /* manual mic: visible errors + listening indicator */
+  if(rec){
+    rec.onerror = micError;
+    rec.onstart = () => { input.placeholder = "🎙 Listening… speak now"; };
+    const prevEnd = rec.onend;
+    rec.onend = () => { if(prevEnd) prevEnd(); input.placeholder = "Speak or type your command, sir…"; };
+  }
+  /* wake recognizer: report mic-permission errors instead of failing silently */
+  const _startWake = startWake;
+  startWake = function(){
+    _startWake();
+    if(wakeRec){
+      wakeRec.onerror = e => {
+        if(e && e.error === "not-allowed"){
+          micError(e);
+          wakeOn = false;
+          localStorage.setItem("jarvis_wake", "off");
+          stopWake();
+          paintWake();
+        }
+      };
+    }
+  };
+})();
+
+</script>
+<script>
+/* ============ MARK X — SELF-HEAL CORE · mic-loop fix · diagnostics ============ */
+
+/* ---------------- mic state management (fixes the popup loop) ---------------- */
+let micStream = null, micGranted = null, failStreak = 0, healing = false;
+async function micPermState(){
+  try{ return (await navigator.permissions.query({name:"microphone"})).state; }
+  catch(e){ return "unknown"; }
+}
+async function primeMic(hold){
+  try{
+    const s = await navigator.mediaDevices.getUserMedia({audio:true});
+    micGranted = true;
+    if(hold){
+      if(micStream) micStream.getTracks().forEach(t => t.stop());
+      micStream = s;               /* holding the stream stops Chrome re-asking every restart */
+    } else s.getTracks().forEach(t => t.stop());
+    return true;
+  }catch(e){ micGranted = false; return false; }
+}
+function releaseMic(){
+  if(micStream){ micStream.getTracks().forEach(t => t.stop()); micStream = null; }
+}
+
+/* answer "is another tab open?" pings from other JARVIS tabs */
+try{
+  const bcMain = new BroadcastChannel("jarvis_tab");
+  bcMain.onmessage = e => { if(e.data === "ping") bcMain.postMessage("pong"); };
+}catch(e){}
+
+/* ---------------- guarded wake start: ONE permission ask, never a loop ---------------- */
+const _startWakeX = startWake;
+startWake = async function(){
+  if(!SR || !wakeOn || wakeActive || recording || healing) return;
+  const st = await micPermState();
+  if(st === "denied"){
+    wakeOn = false; localStorage.setItem("jarvis_wake", "off"); paintWake();
+    addMsg("sys", "⚠ MIC PERMISSION DENIED — 🔒 ICON IN ADDRESS BAR → MICROPHONE → ALLOW → RELOAD", false);
+    return;
+  }
+  if(micGranted !== true){
+    const got = await primeMic(true);
+    if(!got){
+      wakeOn = false; localStorage.setItem("jarvis_wake", "off"); paintWake();
+      addMsg("sys", "⚠ MIC ACCESS NOT GRANTED — WAKE DISARMED SO I DON'T KEEP ASKING. RUN 🩺 SELF REPAIR WHEN READY.", false);
+      return;
+    }
+  } else if(!micStream){ await primeMic(true); }
+  _startWakeX();
+  if(wakeRec){
+    const t0 = Date.now();
+    wakeRec.onend = () => {
+      wakeActive = false;
+      if(Date.now() - t0 < 2000) failStreak++; else failStreak = 0;
+      if(failStreak >= 4){
+        failStreak = 0;
+        if(wakeOn && !healing){
+          addMsg("sys", "⚠ VOICE LOOP FAULT DETECTED — INITIATING SELF-REPAIR", false);
+          selfRepair();
+        }
+        return;
+      }
+      if(wakeOn && !recording && !healing) setTimeout(startWake, 600 * Math.max(1, failStreak));
+    };
+  }
+};
+/* release the held mic when wake is disarmed */
+const _wakeClick = wakeBtn.onclick;
+wakeBtn.onclick = () => { _wakeClick(); if(!wakeOn) releaseMic(); };
+
+/* ---------------- guarded manual mic ---------------- */
+const _startMicX = startMic;
+startMic = async function(){
+  if(!rec) return;
+  if(micGranted !== true){
+    const got = await primeMic(false);
+    if(!got){ addMsg("sys", "⚠ MICROPHONE BLOCKED — 🔒 ICON → MICROPHONE → ALLOW → RELOAD, OR RUN 🩺 SELF REPAIR", false); return; }
+  }
+  _startMicX();
+};
+micBtn.onclick = () => { pauseWake(); startMic(); };
+core.onclick = () => { pauseWake(); startMic(); };
+/* repeated hard mic errors trigger self-repair automatically */
+if(rec){
+  const _prevErr = rec.onerror;
+  let hardErrs = 0;
+  rec.onerror = e => {
+    if(_prevErr) _prevErr(e);
+    if(e && (e.error === "not-allowed" || e.error === "audio-capture")){
+      if(++hardErrs >= 2 && !healing){ hardErrs = 0; selfRepair(); }
+    }
+  };
+}
+
+/* ---------------- SELF-REPAIR PROTOCOL ---------------- */
+async function selfRepair(){
+  if(healing) return;
+  healing = true;
+  try{ stopWake(); }catch(e){}
+  try{ if(recording) rec.stop(); }catch(e){}
+  speechSynthesis.cancel();
+
+  const ov = document.createElement("div");
+  ov.style.cssText = "position:fixed;inset:0;z-index:150;background:#000b;backdrop-filter:blur(5px);display:flex;align-items:center;justify-content:center";
+  const box = document.createElement("div");
+  box.style.cssText = "width:min(600px,94vw);max-height:82vh;overflow-y:auto;background:linear-gradient(160deg,#04182a,#020e18);border:1px solid #14425c;box-shadow:0 0 80px #00d4ff22;padding:28px;font-family:var(--mono);font-size:11.5px;letter-spacing:1px;color:#8fc6da;line-height:1.8";
+  box.innerHTML = '<div style="font-family:Orbitron,sans-serif;font-size:12px;letter-spacing:5px;color:#eafcff;margin-bottom:14px;text-shadow:0 0 16px #00d4ff66">🩺 SELF-REPAIR PROTOCOL</div>';
+  ov.appendChild(box);
+  document.body.appendChild(ov);
+
+  const P = ms => new Promise(r => setTimeout(r, ms));
+  const ok   = s => '<span style="color:#7dff9b">' + s + '</span>';
+  const bad  = s => '<span style="color:#ff4d6d">' + s + '</span>';
+  const warn = s => '<span style="color:#ffc857">' + s + '</span>';
+  function line(html){
+    const d = document.createElement("div");
+    d.innerHTML = html;
+    box.appendChild(d);
+    box.scrollTop = box.scrollHeight;
+    return d;
+  }
+
+  speak("Running self repair protocol, sir.");
+  line("&gt; INITIATING DIAGNOSTIC SEQUENCE…"); await P(500);
+  let fatal = false;
+
+  /* 1 — voice engine */
+  line("&gt; [1/7] VOICE ENGINE … " + (SR ? ok("OK") : bad("FAIL — THIS BROWSER HAS NO VOICE ENGINE, USE GOOGLE CHROME")));
+  if(!SR) fatal = true;
+  await P(430);
+
+  /* 2 — hardware */
+  let mics = 0;
+  try{ mics = (await navigator.mediaDevices.enumerateDevices()).filter(d => d.kind === "audioinput").length; }catch(e){}
+  line("&gt; [2/7] AUDIO HARDWARE … " + (mics ? ok(mics + " MIC(S) DETECTED") : bad("NO MICROPHONE FOUND — CHECK IT'S PLUGGED IN & ENABLED IN WINDOWS SOUND SETTINGS")));
+  if(!mics) fatal = true;
+  await P(430);
+
+  /* 3 — permission (asks at most ONCE, inside the panel) */
+  let st = await micPermState();
+  line("&gt; [3/7] MIC PERMISSION … " + (st === "granted" ? ok("GRANTED") : st === "denied" ? bad("DENIED") : warn(String(st).toUpperCase())));
+  if(!fatal && st !== "granted"){
+    line("&nbsp;&nbsp;↳ REQUESTING ACCESS — CLICK “ALLOW WHILE VISITING THE SITE” (NOT THE ✕)…");
+    const got = await primeMic(true);
+    line("&nbsp;&nbsp;↳ " + (got ? ok("ACCESS ACQUIRED & HELD — NO MORE POPUP LOOPS") : bad("BLOCKED — 🔒 ICON IN ADDRESS BAR → MICROPHONE → ALLOW → RELOAD PAGE")));
+    if(!got) fatal = true;
+  } else if(st === "granted" && !micStream){ await primeMic(true); }
+  await P(430);
+
+  /* 4 — live signal (real hardware test) */
+  if(!fatal){
+    const l = line("&gt; [4/7] LIVE SIGNAL TEST … " + warn("SAY SOMETHING NOW (3 SECONDS)"));
+    let level = 0;
+    try{
+      const ac = new (window.AudioContext || window.webkitAudioContext)();
+      const src = ac.createMediaStreamSource(micStream || await navigator.mediaDevices.getUserMedia({audio:true}));
+      const an = ac.createAnalyser(); an.fftSize = 512;
+      src.connect(an);
+      const buf = new Uint8Array(an.frequencyBinCount);
+      const t1 = Date.now();
+      while(Date.now() - t1 < 3000){
+        an.getByteFrequencyData(buf);
+        level = Math.max(level, buf.reduce((a, b) => a + b, 0) / buf.length);
+        await P(90);
+      }
+      ac.close();
+    }catch(e){}
+    l.innerHTML = "&gt; [4/7] LIVE SIGNAL TEST … " + (level > 8
+      ? ok("SIGNAL DETECTED — MIC IS ALIVE (LVL " + Math.round(level) + ")")
+      : warn("NO SIGNAL — MIC MUTED, WRONG DEFAULT DEVICE, OR HELD BY ANOTHER APP (ZOOM/DISCORD/RECORDER)"));
+  } else {
+    line("&gt; [4/7] LIVE SIGNAL TEST … " + warn("SKIPPED"));
+  }
+  await P(430);
+
+  /* 5 — origin */
+  const isFile = location.protocol === "file:";
+  line("&gt; [5/7] ORIGIN … " + (isFile
+    ? warn("LOCAL FILE — CHROME FORGETS MIC PERMISSION HERE; HOSTING ON VERCEL/YOUR DOMAIN FIXES THIS PERMANENTLY")
+    : ok("SECURE ORIGIN (" + location.host + ")")));
+  await P(430);
+
+  /* 6 — network */
+  line("&gt; [6/7] NETWORK … " + (navigator.onLine ? ok("ONLINE") : bad("OFFLINE — VOICE RECOGNITION NEEDS INTERNET")));
+  await P(430);
+
+  /* 7 — tab conflict */
+  let twin = false;
+  try{
+    const bc = new BroadcastChannel("jarvis_tab");
+    bc.onmessage = e => { if(e.data === "pong") twin = true; };
+    bc.postMessage("ping");
+    await P(700);
+    bc.close();
+  }catch(e){}
+  line("&gt; [7/7] TAB CONFLICT … " + (twin
+    ? warn("ANOTHER JARVIS TAB IS OPEN — CLOSE IT, THEY FIGHT OVER THE MIC")
+    : ok("SINGLE INSTANCE")));
+  await P(520);
+
+  if(!fatal){
+    line("&gt; REBOOTING VOICE SYSTEMS…");
+    await P(650);
+    failStreak = 0;
+    healing = false;
+    if(wakeOn) startWake();
+    line("&gt; " + ok("✔ VOICE SYSTEMS RESTORED — SAY “JARVIS” OR TAP 🎙"));
+    speak("Repairs complete, sir. Voice systems are back online.");
+  } else {
+    healing = false;
+    line("&gt; " + bad("✖ MANUAL INTERVENTION REQUIRED — FIX THE RED ITEM ABOVE, THEN RUN SELF-REPAIR AGAIN"));
+    speak("I've located the fault, sir. This one needs your hands — details are on screen.");
+  }
+  const cb = document.createElement("button");
+  cb.className = "mini";
+  cb.textContent = "✕ CLOSE";
+  cb.style.cssText = "margin-top:16px";
+  cb.onclick = () => ov.remove();
+  box.appendChild(cb);
+}
+
+/* ---------------- voice/text command + chip ---------------- */
+const _handleX = handleCommand;
+handleCommand = async function(raw){
+  const t = stripWake(raw).toLowerCase();
+  if(/^(fix yourself|self repair|self-repair|repair yourself|heal yourself|diagnose|run diagnostics?)[.!]?$/.test(t)){
+    setTimeout(selfRepair, 400);
+    return "Initiating self-repair protocol, sir.";
+  }
+  return _handleX(raw);
+};
+(function(){
+  const chips = document.getElementById("chips");
+  if(!chips) return;
+  const b = document.createElement("button");
+  b.className = "chip";
+  b.textContent = "🩺 Self repair";
+  b.onclick = () => selfRepair();
+  chips.appendChild(b);
+})();
+
+</script>
+<script>
+/* ============ MARK XI — real-origin fix · Gmail automation · contacts · inner core ============ */
+
+/* ---------------- file:// reality check (the popup-loop root cause) ---------------- */
+if(location.protocol === "file:"){
+  const _swFile = startWake;
+  startWake = async function(){
+    wakeOn = false; localStorage.setItem("jarvis_wake", "off"); paintWake();
+    addMsg("sys", "⚠ WAKE MODE NEEDS A REAL ADDRESS — ON LOCAL FILES CHROME RE-ASKS MIC PERMISSION IN AN ENDLESS LOOP. FIX: RUN jarvis_agent.py, THEN OPEN http://127.0.0.1:7777 — SAME JARVIS, PERMISSION ASKED ONCE, SAVED FOREVER. (THE 🎙 BUTTON STILL WORKS HERE.)", false);
+  };
+  setTimeout(() => addMsg("sys", "ℹ RUNNING AS LOCAL FILE — FOR WAKE WORD & ZERO POPUPS: RUN jarvis_agent.py IN PYCHARM, THEN OPEN http://127.0.0.1:7777", false), 4500);
+} else {
+  setTimeout(() => { if(!localStorage.getItem("jarvis_origin_ok")){ localStorage.setItem("jarvis_origin_ok","1"); addMsg("sys", "✔ REAL ORIGIN DETECTED (" + location.host + ") — MIC PERMISSION WILL BE REMEMBERED", false); } }, 4500);
+}
+
+/* ---------------- contacts + Gmail automation (no password — ever) ---------------- */
+function findContact(name){
+  for(const f of memory){
+    const m = f.match(/^EMAIL:(.+?):(.+)$/);
+    if(m && m[1].toLowerCase() === name.toLowerCase()) return m[2];
+  }
+  return null;
+}
+function gmailCompose(to, su, body){
+  return "https://mail.google.com/mail/?view=cm&fs=1" +
+    (to ? "&to=" + encodeURIComponent(to) : "") +
+    (su ? "&su=" + encodeURIComponent(su) : "") +
+    (body ? "&body=" + encodeURIComponent(body) : "");
+}
+async function draftEmail(to, topic){
+  const res = await fetch("https://api.groq.com/openai/v1/chat/completions", {
+    method:"POST",
+    headers:{ "Content-Type":"application/json", "Authorization":"Bearer " + apiKey },
+    body: JSON.stringify({
+      model, temperature:0.6, max_tokens:500,
+      messages:[
+        {role:"system", content:'You draft emails. Reply ONLY with valid JSON: {"subject":"...","body":"..."}. Professional, warm, concise. No markdown in the body.'},
+        {role:"user", content:"Draft an email to " + to + " about: " + topic + (userName() ? " Sign it from " + userName() + "." : "")}
+      ]
+    })
+  });
+  const j = await res.json();
+  let txt = j.choices?.[0]?.message?.content || "";
+  txt = txt.replace(/```json|```/g, "").trim();
+  const s = txt.indexOf("{"), e = txt.lastIndexOf("}");
+  return JSON.parse(txt.slice(s, e + 1));
+}
+const _handleM12 = handleCommand;
+handleCommand = async function(raw){
+  const bare = stripWake(raw);
+  const t = bare.toLowerCase();
+  let m;
+  /* save a contact */
+  m = bare.match(/^remember\s+(?:the\s+)?email\s+(?:of\s+|for\s+)?(.+?)\s+is\s+(\S+@\S+)$/i) ||
+      bare.match(/^remember\s+(.+?)'s\s+email\s+is\s+(\S+@\S+)$/i);
+  if(m){
+    const nm = m[1].trim(), ad = m[2].replace(/[.,;]$/, "");
+    memory = memory.filter(f => !f.toLowerCase().startsWith("email:" + nm.toLowerCase() + ":"));
+    memory.push("EMAIL:" + nm + ":" + ad);
+    saveMem();
+    return "Contact saved, sir — " + nm + " is in my address book now. Just say “email " + nm + " about …”.";
+  }
+  /* send email */
+  m = bare.match(/^(?:send (?:an )?email|email|mail)(?:\s+to)?\s+(\S+@\S+|[a-z][a-z .]{0,30}?)(?:\s+(?:about|regarding|saying|that|:)\s+(.+))?$/i);
+  if(m){
+    let addr = m[1].trim().replace(/[.,;]$/, "");
+    if(!addr.includes("@")){
+      const c = findContact(addr);
+      if(!c) return "I don't have an address for “" + addr + "”, sir. Say: “remember " + addr + "'s email is name@example.com” and I'll never ask again.";
+      addr = c;
+    }
+    const topic = (m[2] || "").trim();
+    if(!topic) return openURL(gmailCompose(addr, "", ""), "Gmail compose to " + addr);
+    let su = topic, body = "";
+    if(apiKey){
+      try{
+        setState("thinking");
+        const d = await draftEmail(addr, topic);
+        su = d.subject || topic; body = d.body || "";
+        setState("idle");
+      }catch(e){ setState("idle"); }
+    }
+    const r = openURL(gmailCompose(addr, su, body), "Gmail draft to " + addr);
+    return body ? "Email drafted and ready in Gmail, sir — recipient, subject and body are pre-filled. Review and hit Send." : r;
+  }
+  if(/^(?:compose|new)\s+(?:an\s+)?email[.!]?$/.test(t)) return openURL(gmailCompose("", "", ""), "Gmail compose");
+  if(/^(?:show|list)\s+(?:my\s+)?contacts[.!]?$/.test(t)){
+    const cs = memory.filter(f => f.startsWith("EMAIL:")).map(f => { const p = f.match(/^EMAIL:(.+?):(.+)$/); return "• " + p[1] + " — " + p[2]; });
+    return cs.length ? "Your address book, sir:\n" + cs.join("\n") : "No contacts on file yet, sir. Say “remember mom's email is …”.";
+  }
+  return _handleM12(raw);
+};
+
+/* prettier memory list (names & contacts get icons) */
+renderMemory = function(){
+  const ul = document.getElementById("memList"); if(!ul) return;
+  ul.innerHTML = "";
+  memory.forEach((f, i) => {
+    const li = document.createElement("li");
+    li.style.cssText = "display:flex;gap:8px;align-items:center;font-size:12.5px;padding:6px 9px;background:linear-gradient(90deg,#07203144,transparent);border-left:2px solid #ffc857";
+    const sp = document.createElement("span");
+    sp.style.cssText = "flex:1;word-break:break-word";
+    let em;
+    if(f.startsWith("NAME:")) sp.textContent = "👤 " + f.slice(5);
+    else if((em = f.match(/^EMAIL:(.+?):(.+)$/))) sp.textContent = "📧 " + em[1] + " — " + em[2];
+    else sp.textContent = f;
+    const del = document.createElement("button");
+    del.className = "tdel"; del.textContent = "✕";
+    del.onclick = () => { memory.splice(i, 1); saveMem(); };
+    li.append(sp, del);
+    ul.appendChild(li);
+  });
+  const emEl = document.getElementById("memEmpty");
+  if(emEl) emEl.style.display = memory.length ? "none" : "block";
+};
+renderMemory();
+
+/* email chip */
+(function(){
+  const chips = document.getElementById("chips");
+  if(!chips) return;
+  const b = document.createElement("button");
+  b.className = "chip"; b.textContent = "📧 Email by voice";
+  b.onclick = () => addMsg("jarvis",
+    "**Email automation, sir** (no password needed — uses your logged-in Gmail):\n" +
+    "• “remember mom's email is mom@gmail.com” — save a contact\n" +
+    "• “email mom about I'll be home late tonight” — I draft subject + body with AI and open Gmail pre-filled; you just press Send\n" +
+    "• “email someone@x.com about meeting tomorrow”\n" +
+    "• “compose email” — blank compose\n" +
+    "• “show contacts” — your address book", false);
+  chips.appendChild(b);
+})();
+
+/* ---------------- inner core: fault containment + watchdog ---------------- */
+let _faultAt = 0;
+window.addEventListener("error", () => {
+  if(Date.now() - _faultAt < 30000) return;
+  _faultAt = Date.now();
+  try{ addMsg("sys", "⚠ INTERNAL FAULT CONTAINED — SYSTEMS STABLE", false); }catch(e){}
+});
+window.addEventListener("unhandledrejection", ev => { ev.preventDefault(); });
+let _busyTicks = 0;
+setInterval(() => {
+  if(busy) _busyTicks++; else _busyTicks = 0;
+  if(_busyTicks >= 18){
+    _busyTicks = 0; busy = false; setState("idle");
+    addMsg("sys", "⚠ WATCHDOG CLEARED A STUCK PROCESS — READY FOR ORDERS", false);
+  }
+}, 5000);
+
+</script>
+<script>
+/* ============ MARK XII — VOICE GATE: one click, one permission, zero popup storms ============ */
+/* Root causes fixed here:
+   1. Old logic could start SEVERAL microphone listeners at once (each one = its own popup).
+   2. Restarts had no rate limit — a fast crash-restart cycle = popup every second.
+   3. Permission was requested by background code; browsers only trust a real user CLICK.
+   New rule: NOTHING touches the mic until the user clicks ENABLE VOICE once. One gate,
+   one listener, max one start per 1.5s, and a hard kill if permission is refused. */
+
+let voiceReady = false, voiceStarting = false, lastWakeStart = 0, gateBtn = null;
+
+async function micState(){
+  try{ return (await navigator.permissions.query({name:"microphone"})).state; }
+  catch(e){ return "unknown"; }
+}
+
+/* ---------- THE gate button ---------- */
+function showVoiceGate(label){
+  if(!gateBtn){
+    gateBtn = document.createElement("button");
+    gateBtn.style.cssText = "position:fixed;left:50%;bottom:26px;transform:translateX(-50%);z-index:95;cursor:pointer;font-family:Orbitron,sans-serif;font-size:12px;letter-spacing:3px;color:#02131f;background:linear-gradient(135deg,#00d4ff,#7df2ff);border:none;padding:15px 28px;box-shadow:0 0 34px #00d4ff66;clip-path:polygon(10px 0,100% 0,100% calc(100% - 10px),calc(100% - 10px) 100%,0 100%,0 10px)";
+    gateBtn.onclick = enableVoice;
+    document.body.appendChild(gateBtn);
+  }
+  gateBtn.textContent = label || "🎙 ENABLE VOICE SYSTEMS";
+  gateBtn.style.display = "block";
+}
+function hideVoiceGate(){ if(gateBtn) gateBtn.style.display = "none"; }
+
+/* runs INSIDE the click — the only way browsers reliably remember the permission */
+async function enableVoice(){
+  gateBtn.textContent = "⏳ REQUESTING MIC…";
+  try{
+    const s = await navigator.mediaDevices.getUserMedia({audio:true});
+    if(micStream) micStream.getTracks().forEach(t => t.stop());
+    micStream = s;                       /* held open: Chrome has zero reason to re-ask */
+    voiceReady = true;
+    hideVoiceGate();
+    addMsg("sys", "✔ VOICE SYSTEMS ONLINE — PERMISSION LOCKED FOR THIS SESSION", false);
+    if(location.protocol === "file:")
+      addMsg("sys", "ℹ ON A LOCAL FILE THIS LASTS ONE SESSION — RUN jarvis_agent.py & OPEN http://127.0.0.1:7777 TO MAKE IT PERMANENT", false);
+    speak("Voice systems online, sir.");
+    if(wakeOn) startWake();
+  }catch(e){
+    gateBtn.textContent = "🎙 ENABLE VOICE SYSTEMS";
+    addMsg("sys", "⚠ PERMISSION REFUSED — CLICK THE 🔒 ICON IN THE ADDRESS BAR → MICROPHONE → ALLOW → RELOAD THE PAGE", false);
+  }
+}
+
+/* ---------- single-flight, rate-limited wake listener (replaces ALL older versions) ---------- */
+startWake = function(){
+  if(!SR || !wakeOn || !voiceReady || wakeActive || voiceStarting || recording || healing) return;
+  const now = Date.now();
+  if(now - lastWakeStart < 1500) return;        /* hard rate limit — storms impossible */
+  lastWakeStart = now;
+  voiceStarting = true;
+  try{
+    wakeRec = new SR();
+    wakeRec.continuous = true; wakeRec.interimResults = false; wakeRec.lang = "en-US";
+    wakeRec.onresult = e => {
+      const said = e.results[e.results.length - 1][0].transcript.trim();
+      if(!said) return;
+      if(awaitingCmd){
+        clearTimeout(awaitTimer); awaitingCmd = false; setState("idle");
+        document.getElementById("userInput").value = said;
+        send();
+        return;
+      }
+      const low = said.toLowerCase();
+      const idx = low.indexOf("jarvis");
+      if(idx === -1) return;
+      const after = said.slice(idx + 6).replace(/^[,!. ]+/, "").trim();
+      if(after){
+        document.getElementById("userInput").value = after;
+        send();
+      } else {
+        awaitingCmd = true;
+        coreState.textContent = "LISTENING";
+        core.className = "thinking";
+        speak("Yes, sir?");
+        awaitTimer = setTimeout(() => { awaitingCmd = false; setState("idle"); }, 9000);
+      }
+    };
+    wakeRec.onerror = e => {
+      const code = e && e.error;
+      if(code === "not-allowed" || code === "service-not-allowed"){
+        voiceReady = false;
+        wakeOn = false; localStorage.setItem("jarvis_wake", "off"); paintWake();
+        showVoiceGate("🎙 MIC BLOCKED — CLICK TO RE-ENABLE");
+      }
+    };
+    wakeRec.onend = () => {
+      wakeActive = false;
+      if(wakeOn && voiceReady && !recording && !healing) setTimeout(startWake, 1200);
+    };
+    wakeRec.start();
+    wakeActive = true;
+  }catch(e){ wakeActive = false; }
+  voiceStarting = false;
+};
+
+/* ---------- gated manual mic (replaces older versions) ---------- */
+startMic = function(){
+  if(!rec) return;
+  if(!voiceReady){
+    showVoiceGate();
+    addMsg("sys", "⚠ ONE CLICK NEEDED FIRST — HIT “ENABLE VOICE SYSTEMS” AT THE BOTTOM OF THE SCREEN", false);
+    return;
+  }
+  if(recording){ try{ rec.stop(); }catch(e){} return; }
+  speechSynthesis.cancel();
+  recording = true;
+  micBtn.classList.add("rec");
+  try{ rec.start(); }catch(e){ recording = false; micBtn.classList.remove("rec"); }
+};
+micBtn.onclick = () => { pauseWake(); startMic(); };
+core.onclick   = () => { pauseWake(); startMic(); };
+
+/* gated pause/resume — every legacy code path now flows through the gate */
+pauseWake  = function(){ if(wakeOn){ try{ stopWake(); }catch(e){} } };
+resumeWake = function(){ if(wakeOn && voiceReady && !recording) setTimeout(startWake, 800); };
+
+/* manual mic errors: report once, never auto-prompt, never loop */
+if(rec){
+  rec.onerror = e => {
+    const code = e && e.error;
+    if(code === "no-speech" || code === "aborted") return;
+    recording = false; micBtn.classList.remove("rec");
+    if(code === "not-allowed" || code === "service-not-allowed"){
+      voiceReady = false;
+      showVoiceGate("🎙 MIC BLOCKED — CLICK TO RE-ENABLE");
+    } else if(code === "audio-capture"){
+      addMsg("sys", "⚠ NO WORKING MICROPHONE — CHECK IT'S PLUGGED IN AND NOT HELD BY ZOOM/DISCORD", false);
+    } else if(code === "network"){
+      addMsg("sys", "⚠ VOICE RECOGNITION NEEDS INTERNET — CHECK YOUR CONNECTION", false);
+    }
+  };
+}
+
+/* arming wake without voice enabled → point at the gate instead of prompting */
+(function(){
+  const _wb = wakeBtn.onclick;
+  wakeBtn.onclick = () => { _wb(); if(wakeOn && !voiceReady) showVoiceGate(); };
+})();
+
+/* ---------- boot: kill every legacy listener, then decide ONCE ---------- */
+(async function initVoiceGate(){
+  try{ stopWake(); }catch(e){}
+  try{ if(recording) rec.stop(); }catch(e){}
+  if(!SR) return;
+  const st = await micState();
+  if(st === "granted"){
+    voiceReady = true;
+    addMsg("sys", "✔ MIC PERMISSION ALREADY SAVED — VOICE READY", false);
+    if(wakeOn) setTimeout(startWake, 1800);
+  } else {
+    showVoiceGate();
+  }
 })();
 
 </script>
